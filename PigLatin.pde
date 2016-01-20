@@ -1,4 +1,4 @@
-import java.util.*;
+    import java.util.*;
 
 public void setup() {
 	String lines[] = loadStrings("words.txt");
@@ -14,6 +14,12 @@ public int findFirstVowel(String sWord)
 //precondition: sWord is a valid String of length greater than 0.
 //postcondition: returns the position of the first vowel in sWord.  If there are no vowels, returns -1
 {
+for(int i = 0; i < sWord.length();i++)
+{
+	String john = sWord.substring(i,i+1);
+	if(john.equals("a") || john.equals("e") || john.equals("i") || john.equals("o") || john.equals("u"))
+    return i;
+}
 	return -1;
 }
 
@@ -25,8 +31,16 @@ public String pigLatin(String sWord)
 	{
 		return sWord + "ay";
 	}
+	if(findFirstVowel(sWord) == 0)
+	{
+		return sWord + "way";
+	}
+	if((sWord.substring(0,2)).equals("qu"))
+	{
+		return sWord.substring(2) + "quay";
+	}
 	else
 	{
-		return "ERROR!";
+		return sWord.substring(findFirstVowel(sWord)) + sWord.substring(0,findFirstVowel(sWord)) + "ay";
 	}
 }
